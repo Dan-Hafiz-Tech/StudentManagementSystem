@@ -429,17 +429,17 @@
                     <div class="login-header">
                         <h2>Student Login</h2>
                     </div>
-                    <form id="loginForm">
+                    <form >
                         <div class="form-group">
                             <label for="studentId">Student ID</label>
-                            <input type="text" id="studentId" class="form-control" placeholder="Enter your student ID" required>
+                            <input type="text" id="username" class="form-control" placeholder="Enter your student ID" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
                             <a href="#" class="forgot-password">Forgot password?</a>
                         </div>
-                        <button type="submit" class="btn">Login</button>
+                        <button type="submit" class="btn" onclick="login(event)">Login</button>
                     </form>
                     <div class="form-footer">
                         <p>Need help? Contact your administrator</p>
@@ -470,25 +470,28 @@
     </footer>
 
     <script>
-        // Simple login demonstration (for illustration purposes only)
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real application, you would validate credentials against a server
-            // Here we're just showing how the view would change after login
-            
-            // Hide login section
-            document.querySelector('.hero').style.display = 'none';
-            
-            // Show dashboard
-            document.querySelector('.dashboard').style.display = 'block';
-        });
-
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
+    
+            // Get input values inside the function
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            // Check credentials and redirect based on conditions
+            if (username === "admin" && password === "admin123") {
+                window.location.href = "admin.html"; // Redirect to admin dashboard
+                alert("Login successful! Redirecting to admin dashboard...");
+            // } else if (username === "student" && password === "student123") {
+            //     window.location.href = "student.html"; // Redirect to student dashboard
+            //     alert("Login successful! Redirecting to student dashboard...");
+            } else {
+                alert("Invalid credentials. Please try again."); // Show error for invalid login
+            }
+        }
+    
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
-</body>
-</html>
